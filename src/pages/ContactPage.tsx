@@ -7,10 +7,6 @@ const faqs = [
     { question: "Do you serve clients outside of Kenya?", answer: "Yes, while our headquarters are in Nairobi, we serve clients across the entire East African region and beyond." }
 ];
 
-const testimonials = [
-    { quote: "Syntrex transformed our security posture. Their team is professional, thorough, and world-class.", name: "John K.", company: "CEO, FinTech Innovators" }
-];
-
 const ContactPage: React.FC = () => {
     return (
         <section className="bg-gradient-to-t from-[#154c79] to-[#122c4a]">

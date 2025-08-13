@@ -3,8 +3,8 @@ import React from 'react';
 import { motion, type Variants, cubicBezier } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
-import ParticleBackground from './ParticleBackground';
-import SyntrexLogo from '../assets/s_logo.png'
+import SyntrexLogo from '../assets/s_logo.png';
+import HeroBg from '../assets/HeroBG.webp';
 
 // Animation variants for the container to orchestrate animations of children
 const containerVariants: Variants = {
@@ -30,8 +30,19 @@ const itemVariants: Variants = {
 
 const Hero: React.FC = () => {
     return (
-        <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-[#154c79] to-[#122c4a]">
-            <ParticleBackground />
+        <section className="relative w-full min-h-screen flex items-center overflow-hidden">
+            {/* Background image */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src={HeroBg}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                />
+            </div>
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#154c79]/80 to-[#122c4a]/90 pointer-events-none" />
 
             <motion.div
                 className="relative z-20 max-w-7xl mx-auto w-full px-8"
@@ -50,7 +61,7 @@ const Hero: React.FC = () => {
                         </motion.h1>
 
                         <motion.p
-                            className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-8"
+                            className="text-base sm:text-lg text-gray-200/90 max-w-2xl mx-auto lg:mx-0 mb-8"
                             variants={itemVariants}
                         >
                             We provide elite cybersecurity services to protect your organization from the world's most advanced threats.
@@ -62,7 +73,7 @@ const Hero: React.FC = () => {
                         >
                             <Link to="/contact" className="w-full sm:w-auto">
                                 <motion.button
-                                    className="w-full sm:w-auto sm:min-w-[220px] bg-brand-blue text-white font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue border border-white"
+                                    className="w-full sm:w-auto sm:min-w-[220px] bg-brand-blue text-white font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue border border-white/20"
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     aria-label="Get a Free Consultation"
@@ -73,7 +84,7 @@ const Hero: React.FC = () => {
 
                             <Link to="/services" className="w-full sm:w-auto">
                                 <motion.button
-                                    className="w-full sm:w-auto sm:min-w-[220px] bg-white border border-gray-300 text-gray-800 font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue"
+                                    className="w-full sm:w-auto sm:min-w-[220px] bg-white/95 backdrop-blur border border-gray-300 text-gray-800 font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue"
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     aria-label="View Our Services"
