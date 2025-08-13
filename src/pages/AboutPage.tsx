@@ -1,4 +1,5 @@
 import React from 'react';
+import DefaultPicture from '../assets/default.jpg'
 
 type TeamMember = {
     name: string;
@@ -186,20 +187,20 @@ const AboutPage: React.FC = () => {
                         <MemberCard
                             name="Jane Doe"
                             role="Founder & CEO"
-                            img="https://via.placeholder.com/300x300.png?text=Jane+Doe"
+                            img={DefaultPicture}
                             linkedin="#"
                             twitter="#"
                         />
                         <MemberCard
                             name="John Smith"
                             role="Head of Threat Intelligence"
-                            img="https://via.placeholder.com/300x300.png?text=John+Smith"
+                            img={DefaultPicture}
                             linkedin="#"
                         />
                         <MemberCard
                             name="Amina Omar"
                             role="Lead Security Consultant"
-                            img="https://via.placeholder.com/300x300.png?text=Amina+Omar"
+                            img={DefaultPicture}
                             twitter="#"
                         />
                     </div>

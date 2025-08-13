@@ -8,6 +8,7 @@ import AboutPage from '../pages/AboutPage';
 import ServicesPage from '../pages/ServicesPage';
 import ServiceDetailPage from '../pages/ServiceDetailPage';
 import ContactPage from '../pages/ContactPage';
+import CareersPage from '../pages/CareersPage';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,7 +18,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      
+      <Route path="/careers" element={<CareersPage />} />
+
       {/* You can add a 404 Not Found route here as well */}
       <Route path="*" element={<HomePage />} /> {/* Or a dedicated 404 component */}
     </Routes>
