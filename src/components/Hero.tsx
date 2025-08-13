@@ -1,32 +1,106 @@
 // src/components/Hero.tsx
 import React from 'react';
+import { motion, type Variants, cubicBezier } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
+import ParticleBackground from './ParticleBackground';
+import SyntrexLogo from '../assets/s_logo.png'
+
+// Animation variants for the container to orchestrate animations of children
+const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.2 },
+    },
+};
+
+// Animation variants for individual text/button elements
+const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.6,
+            ease: cubicBezier(0.42, 0, 0.58, 1),
+        },
+    },
+};
 
 const Hero: React.FC = () => {
-  return (
-    <section id="home" className="bg-dark-bg min-h-screen flex items-center justify-center text-white p-8">
-      <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
-        {/* Text Content */}
-        <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-          <h1 className="text-4xl md:text-6xl font-bold text-light-slate mb-4">
-            Securing the Future of Digital Africa
-          </h1>
-          <p className="text-lg text-slate mb-8">
-            Syntrex Limited is a cybersecurity consulting firm dedicated to protecting organizations across the African continent.
-          </p>
-          <button className="bg-brand-blue text-white font-bold py-3 px-8 rounded hover:bg-opacity-90 transition duration-300">
-            Get Started
-          </button>
-        </div>
-        {/* Image/Graphic */}
-        <div className="md:w-1/2 flex justify-center">
-         {/* You can use an SVG or an image here */}
-         <svg className="w-64 h-64 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-        </div>
-      </div>
-    </section>
-  );
+    return (
+        <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-[#154c79] to-[#122c4a]">
+            <ParticleBackground />
+
+            <motion.div
+                className="relative z-20 max-w-7xl mx-auto w-full px-8"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+                    {/* Left: Text + Buttons */}
+                    <div className="order-2 lg:order-1 text-center lg:text-left">
+                        <motion.h1
+                            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-100 leading-tight mb-6"
+                            variants={itemVariants}
+                        >
+                            State-of-the-Art Cyber Defense
+                        </motion.h1>
+
+                        <motion.p
+                            className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-8"
+                            variants={itemVariants}
+                        >
+                            We provide elite cybersecurity services to protect your organization from the world's most advanced threats.
+                        </motion.p>
+
+                        <motion.div
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+                            variants={itemVariants}
+                        >
+                            <Link to="/contact" className="w-full sm:w-auto">
+                                <motion.button
+                                    className="w-full sm:w-auto sm:min-w-[220px] bg-brand-blue text-white font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue border border-white"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    aria-label="Get a Free Consultation"
+                                >
+                                    Get a Free Consultation
+                                </motion.button>
+                            </Link>
+
+                            <Link to="/services" className="w-full sm:w-auto">
+                                <motion.button
+                                    className="w-full sm:w-auto sm:min-w-[220px] bg-white border border-gray-300 text-gray-800 font-semibold text-base sm:text-lg py-3 sm:py-3.5 px-6 sm:px-7 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    aria-label="View Our Services"
+                                >
+                                    Our Services <FiArrowRight />
+                                </motion.button>
+                            </Link>
+                        </motion.div>
+                    </div>
+
+                    {/* Right: Logo */}
+                    <motion.div
+                        className="order-1 lg:order-2 flex justify-center lg:justify-end"
+                        variants={itemVariants}
+                    >
+                        <motion.img
+                            src={SyntrexLogo}
+                            alt="Company logo"
+                            className="w-48 sm:w-60 md:w-72 lg:w-80 xl:w-96 h-auto drop-shadow-lg"
+                            animate={{ y: [0, -8, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                        />
+                    </motion.div>
+                </div>
+            </motion.div>
+        </section>
+    );
 };
 
 export default Hero;
